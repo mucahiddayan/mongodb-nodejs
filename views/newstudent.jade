@@ -5,27 +5,27 @@ block content
     form#form_add_student(name="addstudent",method="post",action="/addstudent")
         span name
         span &nbsp
-        input#input_name(type="text", placeholder="student",name="student")
+        input#input_name(type="text", placeholder="student",name="student", required)
         br
         br
         span street
         span &nbsp
-        input#input_street(type="text", placeholder="street",name="street")
+        input#input_street(type="text", placeholder="street",name="street",required)
         br
         br
         span sex
         span &nbsp
-        input#input_sex(type="text", placeholder="sex",name="sex")
+        input#input_sex(type="text", placeholder="sex",name="sex",required)
         br
         br
         span city
         span &nbsp
-        input#input_city(type="text", placeholder="city",name="city")
+        input#input_city(type="text", placeholder="city",name="city",required)
         br
         br
         span gpa
         span &nbsp
-        input#input_gpa(type="text", placeholder="gpa",name="gpa")
+        input#input_gpa(type="text", placeholder="gpa",name="gpa",required)
         br
         br        
         button#submit_student(type="submit") submit

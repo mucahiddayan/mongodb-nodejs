@@ -3,17 +3,44 @@ var router = express.Router();
 
 var mongodb = require('mongodb');
 
+const MongoClient = mongodb.MongoClient;  
+const URL = "mongodb://localhost:27017/mongo";
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* GET home page. */
+router.get('/student', function(req, res, next) {
+  MongoClient.connect(URL,(err,db)=>{
+    if(err){
+      console.log(`Unable to connect to the server`,err);
+    }
+    else{
+      console.log("Connection established");
+      
+      var collection = db.collection('students');
+     
+      collection.find({student:req.query.name}).toArray((err,result)=>{        
+        if(err){
+          res.send(err);
+        }
+        else if(result.length){
+          res.render('student',{"students":result});
+        }else{
+          res.send('No documents found');
+        }
+        
+        db.close();
+      });
+    }
+  });
+});
+
 router.get('/thelist',(req,res)=>{
-  var MongoClient = mongodb.MongoClient;
   
-  var url = "mongodb://localhost:27017/mongo";
   
-  MongoClient.connect(url,(err,db)=>{
+  MongoClient.connect(URL,(err,db)=>{
     if(err){
       console.log(`Unable to connect to the server`,err);
     }

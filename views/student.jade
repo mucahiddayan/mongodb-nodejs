@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    h3.
+        Students
+    ul
+        each student, i in students
+            li#student_list_item
+                span #{student.student} #{student.street} #{student.city}   #{student.sex}
+    a(href="/thelist") back
